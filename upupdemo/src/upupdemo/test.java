@@ -29,6 +29,7 @@ public class test {
 	//預計 力量= 基礎+sin函數 達成剛出生與衰老時較弱,中年時較強
 	//預計 跑速 = 力量+random() 達成讓比較弱小的一方有可能逃亡
 	static float animalPowerBase =30;		//動物基礎力量
+	static float animalPowerAddK=10;		//power =base+k*sin()  這個是常數
 	static float animalBaseAgeMax = 30; //動物基礎年紀上限  達到則死亡
 	//年紀上限 = 動物基礎年紀上限+物種加成
 	static float plantBaseLife = 10;  //植物基礎生命
@@ -80,7 +81,7 @@ public class test {
 			System.out.println("第"+a.day+"天,,,產生"+a.speciesName[a.speciesRandom]+",,,數量為"+a.speciesNumRandom);
 			a.CreateBiological(a.speciesRandom,a.speciesNumRandom);	//產生新物種			
 			a.BiologicalMeet();//生物相遇			
-			a.GrowUp();	//成長  動物增加飢餓  植物回復生命
+			a.GrowUp();	//成長  動物增加飢餓 力量改變 植物回復生命
 			a.removeDeathBiological();//移除已死亡生物
 			a.day++;//日期++
 		}

@@ -244,18 +244,21 @@ public class BiologicalRecord {
 		for(int i =0;i<listAll.size();i++) {
 			if(listAll.get(i) instanceof Animal) {
 				Animal a =(Animal)listAll.get(i);
-				a.degreeHunger =a.degreeHunger+test.animalDegreeHungerAdd;	//所有動物飢餓度提高
+				a.degreeHunger =a.degreeHunger+test.animalDegreeHungerAdd;	//所有動物飢餓度提高 年齡增加
+				a.age++;
+				a.ResetPower();
 				a.DeathJudgment();
 			}
 			else if (listAll.get(i) instanceof Plant) {
 				Plant a =(Plant)listAll.get(i);
+				a.age++;
 				a.Grow();
 				a.DeathJudgment();
 			}
 		}
 		System.out.println("----所有動物增加飢餓度,植物回復生命----");
 	}
-	void removeDeathBiological() {
+	void removeDeathBiological() {		//移除死往生物
 		boolean a;
 		for(int i =0;i<listAll.size();i++) {
 			a= listAll.get(i).survive;
