@@ -74,12 +74,12 @@ public class test {
 		BiologicalRecord a = new BiologicalRecord();	//創造物件
 		a.Initial();		//初始化
 
-		while(a.day<5){
+		while(a.day<100){
 			a.getSpeciesRandom();	//物種隨機
 			a.getSpeciesNumRandom();	//物種數量隨機
 			System.out.println("第"+a.day+"天,,,產生"+speciesName[a.speciesRandom]+",,,數量為"+a.speciesNumRandom);
 			a.CreateBiological(a.speciesRandom,a.speciesNumRandom);	//產生新物種			
-			a.BiologicalMeett();//生物相遇			
+			a.BiologicalMeet();//生物相遇			
 			a.GrowUp();	//成長  動物增加飢餓 力量改變 植物回復生命
 			a.removeDeathBiological();//移除已死亡生物
 			a.day++;//日期++

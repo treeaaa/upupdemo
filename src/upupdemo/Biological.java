@@ -12,7 +12,6 @@ public abstract class Biological {		//生物抽象類別
 	void AgeAdd() {
 		this.age =this.age++;
 	}
-	void Encounter(Animal anobio) {//物種遭遇
-		this.life =this.life - anobio.power;
-	}
+	abstract void Encounter(Biological b);//物種遭遇
+		
 }

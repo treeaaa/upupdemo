@@ -10,4 +10,5 @@ public class CarnivoreB extends Carnivore{		//¦×­¹°Êª«B
 		this.power = test.animalPowerBase;
 		this.degreeHunger = test.animalDegreeHunger;
 	}
+
 }

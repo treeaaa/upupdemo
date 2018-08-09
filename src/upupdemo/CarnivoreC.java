@@ -10,4 +10,13 @@ public class CarnivoreC extends Carnivore{		//肉食動物C
 		this.power = test.animalPowerBase;
 		this.degreeHunger = test.animalDegreeHunger;
 	}
+	void Encounter(Carnivore b) {
+		this.life = this.life -b.power;
+	}
+	void Encounter(Herbivore b) {
+		this.life = this.life -b.power;	//A生命下降  被B攻擊
+	}
+	void Encounter(Tree b) {
+		Rest();	//休息
+	}
 }
