@@ -1,0 +1,136 @@
+/*for(int i=0;i<a.speciesNum.length;i++) {
+			System.out.println(i+a.speciesName[i]+": "+a.speciesNum[i]);
+		}
+		*/
+		
+		
+		
+
+		
+public void BiologicalMeet() {//生物相遇
+		 for(int i=0;i<listAll.size();i++) {//收尋所有在listall裡的生物物件 並彼此相遇
+			 //listAll.get(i).
+			 if(listAll.get(i).survive) {		//先判斷第一個生物生存 =true
+				 int anotherBiological =(int)(Math.random()*listAll.size());//找到另一個生物
+				 if(listAll.get(anotherBiological).survive) {	//第二個生物是否生存
+					 while(i==anotherBiological) {
+						 anotherBiological =(int)(Math.random()*listAll.size());//遇到與自己重複時,從新選擇對象
+					 }
+					 if(listAll.get(i) instanceof Carnivore) {//A是肉食	
+						 Carnivore a = (Carnivore)listAll.get(i);
+						 if(listAll.get(anotherBiological) instanceof Carnivore) {//B是肉食		
+							 Carnivore b = (Carnivore)listAll.get(anotherBiological);
+							 a.life =a.life -b.power;
+							 b.life =b.life -a.power;
+							 a.DeathJudgment();
+							 b.DeathJudgment();
+							 System.out.println(a.name+"與"+b.name+"打架,,,"+a.name+"生命剩下"+a.life+",,,"+b.name+"生命剩下"+b.life);
+							 if(a.life>0&&b.life<=0) {		//a存活b死亡
+								 System.out.println(a.name+"吃了"+b.name);
+								 a.Eat();
+							 }
+							 else if(a.life<=0&&b.life>0) {//a死亡b存活
+								 System.out.println(b.name+"吃了"+a.name);
+								 b.Eat();
+							 }
+							 
+						 }
+						 else if (listAll.get(anotherBiological) instanceof Herbivore) {//B是草食
+							 Herbivore b = (Herbivore)listAll.get(anotherBiological);
+							 a.life =a.life -b.power;
+							 b.life =b.life -a.power;
+							 a.DeathJudgment();
+							 b.DeathJudgment();
+							 
+							 System.out.println(a.name+"與"+b.name+"打架,,,"+a.name+"生命剩下"+a.life+",,,"+b.name+"生命剩下"+b.life);
+						 }
+						 else if (listAll.get(anotherBiological) instanceof Grass) {//B雜草
+							 Grass b = (Grass)listAll.get(anotherBiological);
+						 }
+						 else if (listAll.get(anotherBiological) instanceof Tree) {//B是樹木
+							 Tree b = (Tree)listAll.get(anotherBiological);
+							 a.Rest();
+							 b.Used();
+							 System.out.println(a.name+"休息了,,,現在生命為:"+a.life+",,,"+b.name+"生命剩下"+b.life);
+						 }
+					 }
+					 else if (listAll.get(i) instanceof Herbivore) {//A是草食
+						 Herbivore a = (Herbivore)listAll.get(i);
+						 if(listAll.get(anotherBiological) instanceof Carnivore) {//B是肉食		
+							 Carnivore b = (Carnivore)listAll.get(anotherBiological);
+							 a.life =a.life -b.power;
+							 b.life =b.life -a.power;
+							 a.DeathJudgment();
+							 b.DeathJudgment();
+							 System.out.println(a.name+"與"+b.name+"打架,,,"+a.name+"生命剩下"+a.life+",,,"+b.name+"生命剩下"+b.life);
+							 if(a.life<=0&&b.life>0) {//a死亡b存活
+								 System.out.println(b.name+"吃了"+a.name);
+								 b.Eat();
+							 }
+						 }
+						 else if (listAll.get(anotherBiological) instanceof Herbivore) {//B是草食
+							 Herbivore b = (Herbivore)listAll.get(anotherBiological);
+							 a.life =a.life -b.power;
+							 b.life =b.life -a.power;
+							 a.DeathJudgment();
+							 b.DeathJudgment();
+							 System.out.println(a.name+"與"+b.name+"打架,,,"+a.name+"生命剩下"+a.life+",,,"+b.name+"生命剩下"+b.life);
+						 }
+						 else if (listAll.get(anotherBiological) instanceof Grass) {//B雜草
+							 Grass b = (Grass)listAll.get(anotherBiological);
+							 a.Eat();
+							 b.Used();
+							 System.out.println(a.name+"吃了"+b.name+",,,現在飢餓度為"+a.degreeHunger+",,,"+b.name+"剩下"+b.life+"生命");
+						 }
+						 else if (listAll.get(anotherBiological) instanceof Tree) {//B是樹木
+							 Tree b = (Tree)listAll.get(anotherBiological);
+							 a.Rest();
+							 b.Used();
+							 System.out.println(a.name+"休息了,,,現在生命為:"+a.life+",,,"+b.name+"剩下"+b.life+"生命");
+						 }
+					 }
+					 /*
+					 else if (listAll.get(i) instanceof Grass) {//A雜草
+						 Grass a = (Grass)listAll.get(i);
+						 if(listAll.get(anotherBiological) instanceof Carnivore) {//B是肉食		
+							 Carnivore b = (Carnivore)listAll.get(anotherBiological);
+						 }
+						 else if (listAll.get(anotherBiological) instanceof Herbivore) {//B是草食
+							 Herbivore b = (Herbivore)listAll.get(anotherBiological);
+							 b.Eat();
+							 a.Used();
+							 System.out.println(b.name+"吃了"+a.name+",,,現在飢餓度為"+b.degreeHunger+",,,"+a.name+"生命剩下"+a.life);
+						 }
+						 else if (listAll.get(anotherBiological) instanceof Grass) {//B雜草
+							 Grass b = (Grass)listAll.get(anotherBiological);
+						 }
+						 else if (listAll.get(anotherBiological) instanceof Tree) {//B是樹木
+							 Tree b = (Tree)listAll.get(anotherBiological);
+						 }						 
+					 }
+					 else if (listAll.get(i) instanceof Tree) {//A是樹木
+						 Tree a = (Tree)listAll.get(i);
+						 if(listAll.get(anotherBiological) instanceof Carnivore) {//B是肉食		
+							 Carnivore b = (Carnivore)listAll.get(anotherBiological);
+							 b.Rest();
+							 a.Used();
+							 System.out.println(b.name+"休息了,,,現在生命為:"+b.life+",,,"+a.name+"生命剩下"+a.life);
+						 }
+						 else if (listAll.get(anotherBiological) instanceof Herbivore) {//B是草食
+							 Herbivore b = (Herbivore)listAll.get(anotherBiological);
+							 b.Rest();
+							 a.Used();
+							 System.out.println(b.name+"休息了,,,現在生命為:"+b.life+",,,"+a.name+"生命剩下"+a.life);
+						 }
+						 else if (listAll.get(anotherBiological) instanceof Grass) {//B雜草
+							 Grass b = (Grass)listAll.get(anotherBiological);
+						 }
+						 else if (listAll.get(anotherBiological) instanceof Tree) {//B是樹木
+							 Tree b = (Tree)listAll.get(anotherBiological);
+						 }
+					 }
+					 */
+				 }
+			}
+		}
+	 }
